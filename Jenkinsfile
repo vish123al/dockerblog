@@ -1,8 +1,8 @@
 def gitCommit() {
-    sh "git rev-parse HEAD > GIT_COMMIT"
-    def gitCommit = readFile('GIT_COMMIT').trim()
-    sh "rm -f GIT_COMMIT"
-    return gitCommit
+   // sh "git rev-parse HEAD > GIT_COMMIT"
+   // def gitCommit = readFile('GIT_COMMIT').trim()
+   // sh "rm -f GIT_COMMIT"
+    //return gitCommit
 }
 
 node {
@@ -18,14 +18,7 @@ node {
     stage '(PUBLISH) Pushing the image '
     sh "docker push vishaldenge/dockerblog:${gitCommit()}"
      stage '(DEPLOY) Deploying the container'
-    marathon(
-       url: 'http://10.0.0.33:8080',
-        forceUpdate: true,
-        filename: 'marathon.json',
-        appId: 'blog',
-        docker: "vishaldenge/dockerblog:${gitCommit()}".toString()
-    )
-   
+        sh 'curl -X POST -H "Content-Type: application/json" http://10.0.1.85:8080/v2/apps -d@marathon.json'
         stage 'Collect test reports'
         
          sh 'touch reports/*.xml'
