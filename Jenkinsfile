@@ -7,7 +7,7 @@ def gitCommit() {
 
 node {
 
-    // Checkout source code from Git
+    // Checkout source code from Git..
     stage 'Checking out scm for repository'
     checkout scm
     //stage '(TEST) unit/integration testing'
