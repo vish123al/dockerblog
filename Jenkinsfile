@@ -18,7 +18,7 @@ node {
     stage '(PUBLISH) Pushing the image '
     sh "docker push vishaldenge/dockerblog:${gitCommit()}"
      stage '(DEPLOY) Deploying the container'
-        sh 'curl -X POST -H "Content-Type: application/json" http://10.0.1.85:8080/v2/apps -d@marathon.json'
+        sh 'curl -X POST -H "Content-Type: application/json" http://10.0.1.65:8080/v2/apps -d@marathon.json'
         stage 'Collect test reports'
         
          sh 'touch reports/*.xml'
