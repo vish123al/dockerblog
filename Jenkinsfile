@@ -10,7 +10,7 @@ node {
     // Checkout source code from Git
     stage 'Checking out scm for repository'
     checkout scm
-    stage '(TEST) unit/integration testing'
+    //stage '(TEST) unit/integration testing'
    // sh 'make test'
     stage '(BUILD) building image'
     sh "docker build -t vishaldenge/dockerblog:${gitCommit()} ."
