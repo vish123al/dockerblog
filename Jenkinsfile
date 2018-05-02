@@ -14,7 +14,7 @@ node {
    // sh 'make test'
     stage '(BUILD) building image'
     sh "docker build -t vishaldenge/dockerblog:${gitCommit()} ."
-    sh "docker login -u vishaldenge -p 'V!sh@l123' "
+    sh "docker login -u vishaldenge -p 'v!sh@l123' "
     stage '(PUBLISH) Pushing the image '
     sh "docker push vishaldenge/dockerblog:${gitCommit()}"
      stage '(DEPLOY) Deploying the container'
