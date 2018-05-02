@@ -26,7 +26,7 @@ node {
         docker: "vishaldenge/dockerblog:${gitCommit()}".toString()
     )
    
-        stage 'Collect test reports'
+        //stage 'Collect test reports'
         
          sh 'touch reports/*.xml'
          junit '**/reports/*.xml'
