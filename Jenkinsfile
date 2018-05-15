@@ -19,17 +19,17 @@ pmd canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/pmd.xml
 warnings canComputeNew: false, canResolveRelativePaths: false, categoriesPattern: '', consoleParsers: [[parserName: 'PHP Runtime']], defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', messagesPattern: '', parserConfigurations: [[parserName: 'PHP Runtime', pattern: '.php']], unHealthy: '' 
    
     stage '(BUILD) building image'
-    sh "docker build -t vdenge/dockerblog:${gitCommit()} ."
-    sh "docker login -u vdenge -p 'V!sh@l12' "
+    sh "docker build -t vishaldenge/dockerblog:${gitCommit()} ."
+    sh "docker login -u vishaldenge -p 'v!sh@l123' "
     stage '(PUBLISH) Pushing the image '
-    sh "docker push vdenge/dockerblog:${gitCommit()}"
+    sh "docker push vishaldenge/dockerblog:${gitCommit()}"
      stage '(DEPLOY) Deploying the container'
     marathon(
         url: 'http://172.29.94.247:8080',
         forceUpdate: true,
         filename: 'marathon.json',
         appId: 'blog',
-        docker: "vdenge/dockerblog:${gitCommit()}".toString()
+        docker: "vishaldenge/dockerblog:${gitCommit()}".toString()
     )
    
         //stage 'Collect test reports'
